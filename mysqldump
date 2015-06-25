@@ -1,0 +1,1 @@
+sudo mysqldump --xml -t -u root -p root rabbitmq_test > "/var/www/test_rabbit/ttttt.xml"

@@ -1,0 +1,32 @@
+sudo gedit /etc/supervisor/supervisord.conf
+
+[program:worker]
+command=/usr/bin/php /var/www/worker.php
+numprocs=1
+directory=/var/www/worker
+stdout_logfile=/var/log/worker.log
+autostart=true
+autorestart=true
+user=www-data
+stopsignal=KILL
+# Запустит 1 процесс указанного скрипта
+
+
+Для запуска нескольких копий одного процесса необходимо также указать параметр process_name для определения уникального имени процесса
+[program:worker]
+command=/usr/bin/php /var/www/worker.php
+process_name=%(program_name)s_%(process_num)02d
+numprocs=10
+directory=/var/www/worker
+stdout_logfile=/var/log/worker.log
+autostart=true
+autorestart=true
+user=www-data
+stopsignal=KILL
+
+После этого достаточно перезапустить supervisor и worker.php сразу запустится:
+
+/etc/init.d/supervisor stop
+/etc/init.d/supervisor start
+
+sudo supervisorctl

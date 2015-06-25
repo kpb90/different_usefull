@@ -1,0 +1,12 @@
+Если phpmyadmin not found
+sudo ln -s /usr/share/phpmyadmin /var/www/html/
+
+sudo gedit /etc/apache2/apache2.conf
+
+add to file
+Include /etc/phpmyadmin/apache.conf
+
+
+Логин  root
+Пароль root
+

@@ -1,0 +1,17 @@
+Добавление пользователя с правами администратора
+
+sudo rabbitmqctl add_user pk 123
+sudo rabbitmqctl set_user_tags pk administrator
+sudo rabbitmqctl set_permissions -p / pk ".*" ".*" ".*"
+
+
+sudo service rabbitmq-server start
+sudo service rabbitmq-server stop
+sudo service rabbitmq-server status
+
+Очистить очередь
+Чтобы установить rabbitmqadmin, нужно скачать файл http://localhost:15672/cli/ и сохранить его в /usr/local/bin
+sudo python /usr/local/bin/rabbitmqadmin purge queue name=addRID
+
+
+
