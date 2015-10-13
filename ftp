@@ -1,0 +1,36 @@
+sudo apt-get install vsftpd
+
+sudo service vsftpd restart
+
+
+nano /etc/vsftpd.conf
+
+// добавить в конец.
+allow_writeable_chroot=YES
+seccomp_sandbox=NO
+
+// размрешить запись
+write_enable=YES
+ascii_upload_enable=YES
+ascii_download_enable=YES
+chroot_local_user=YES
+
+Как добавить пользователя
+http://howitmake.ru/blog/debian/63.html
+useradd admin -b /srv/ftp/ -m -U -s /bin/false
+wer32dsfsd[f[sdp][p][p]]
+
+// public
+useradd admin -b /srv/ftp/ -m -U -s /bin/false
+wer32dsfsasdf3f2d[f[sdp][p][p]]
+
+
+nano /etc/pam.d/vsftpd
+
+
+Найти и закоментировать строку (она самая последняя)
+auth   required        pam_shells.so
+
+Установить домашнюю папку для пользователя
+
+usermod --home /var/www/html admin

@@ -1,0 +1,99 @@
+После установки надо
+// Стартовать
+pg_createcluster 9.3 main --start
+
+Рестарт
+/etc/init.d/postgresql restart
+
+psql: FATAL:  role "pk" does not exist
+sudo -u postgres -i
+
+Запрос на удаление всех таблиц
+drop schema public cascade;
+create schema public;
+
+Импорт базы
+sudo -u postgres psql rabbitmq_test < 'rabbitmq_test_postgres.sql'
+sudo -u postgres psql rid_public_db < 'public_postgres.sql'
+sudo -u postgres psql rid_private_db < 'private_postgres.sql'
+sudo -u postgres psql rid_private_db_test < 'test_private_postgres.sql'
+sudo -u postgres psql rid_public_db_test < 'test_public_postgres.sql'
+
+
+mysql to postgres
+sudo apt-get install pgloader
+
+pgloader mysql://root:root@localhost/rabbitmq_test postgresql://postgres:root@localhost/rabbitmq_test
+
+postgressql studio
+http://localhost:8080/pgstudio/
+
+
+Если проблемы с локалью
+
+sudo locale-gen ru_RU.UTF-8 en_US.UTF-8
+dpkg-reconfigure locales
+
+// Пароль для пользователя
+
+ALTER USER postgres with encrypted password 'root';
+
+Добавление колонки
+ALTER TABLE branch ADD COLUMN path ltree
+
+
+Создать расширение
+CREATE EXTENSION ltree;
+
+sudo -u postgres psql DROP rid_public_db
+
+// создать базу, удалить
+http://eax.me/postgresql-install/
+
+Проблемы с датой, то 
+datestyle = 'iso, dmy'
+nano  /etc/postgresql/9.3/main/postgresql.conf
+
+
+sudo -u postgres psql rid_private_db < 'kc_20150918.sql'
+
+pg_dump -U postgres -h localhost -s rid_private_db > qqq.sql
+ -s = без данных
+
+pg_dump -U postgres -h localhost rid_private_db > db_210915.sql
+
+
+import дамп tar.gz
+pg_restore -h localhost -U postgres -F c -d rid_private_db "db_210915.tar.gz"
+
+
+import tar
+pg_restore -c -i -U postgres -d rid_public_db -v "db_210915.tar" -W
+
+export
+pg_dump -F c -f db_210915.tar.gz -U postgres rid_private_db
+
+
+CREATE DATABASE "rid_private_db" WITH OWNER "postgres" ENCODING 'UTF8' LC_COLLATE = 'ru_RU.UTF-8' LC_CTYPE = 'ru_RU.UTF-8';
+
+update pg_database set encoding = pg_char_to_encoding('UTF8') where datname = 'template0';
+
+Удалить постгрес
+sudo apt-get --purge remove postgresql\*
+
+
+Если постгрес инсталлируется в неправиьной кодироке
+nano /etc/default/locale
+
+LANG="en_US.UTF-8"
+LC_NUMERIC="ru_RU.UTF-8"
+LC_TIME="ru_RU.UTF-8"
+LC_MONETARY="ru_RU.UTF-8"
+LC_PAPER="ru_RU.UTF-8"
+LC_NAME="ru_RU.UTF-8"
+LC_ADDRESS="ru_RU.UTF-8"
+LC_TELEPHONE="ru_RU.UTF-8"
+LC_MEASUREMENT="ru_RU.UTF-8"
+LC_IDENTIFICATION="ru_RU.UTF-8"
+
+

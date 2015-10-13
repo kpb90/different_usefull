@@ -11,7 +11,18 @@ sudo service rabbitmq-server status
 
 Очистить очередь
 Чтобы установить rabbitmqadmin, нужно скачать файл http://localhost:15672/cli/ и сохранить его в /usr/local/bin
+
+touch /usr/local/bin/rabbitmqadmin
+
 sudo python /usr/local/bin/rabbitmqadmin purge queue name=addRID
 
+sudo python /usr/local/bin/rabbitmqadmin get queue=addRID
+sudo python /usr/local/bin/rabbitmqadmin list queues
 
+sudo python /usr/local/bin/rabbitmqadmin get queue=addRID requeue=true count=10
+sudo python /usr/local/bin/rabbitmqadmin get queue=addRID requeue=false
 
+rabbitmqctl list_queues - мониторинг очередей. Очереди, которые существуют в RabbitMQ на данный момент.
+rabbitmqctl messages_unacknowledged - все неподтвержденные сообщения (messages_unacknowledged).
+rabbitmqctl list_exchanges - посмотреть все exchanges
+rabbitmqctl list_bindings - посмотреть все bindings

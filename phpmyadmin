@@ -10,3 +10,5 @@ Include /etc/phpmyadmin/apache.conf
 Логин  root
 Пароль root
 
+как изменить пароль
+http://help.ubuntu.ru/wiki/mysql

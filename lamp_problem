@@ -6,6 +6,17 @@ Add to file
 ServerName localhost
 
 
+2) Если проблемы с тем, что запросы не заворачиваются на index.php
+http://www.dev-metal.com/enable-mod_rewrite-ubuntu-14-04-lts/
 
+
+3) Page not found
+Open apache.conf using your favorite editor, mine is vim :)
+
+sudo vim /etc/apache2/apache2.conf
+
+Then add the following line:
+
+Include /etc/phpmyadmin/apache.conf
 
 
