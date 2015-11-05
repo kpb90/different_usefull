@@ -1,0 +1,606 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0079)http://lib.clodo.ru/web-%D0%A1%D0%B5%D1%80%D0%B2%D0%B5%D1%80/webserver-lna.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><script src="./Nginx + Apache_files/approve" type="text/javascript" async=""></script><script async="" src="./Nginx + Apache_files/async-ads.js"></script><script src="./Nginx + Apache_files/stream" type="text/javascript" async=""></script>
+	
+
+	
+		<title>Nginx + Apache</title>
+	
+
+	<meta name="keywords" content="хостинг, виртуальный сервер, vds, vps, cloud">
+	<meta name="description" content="База знаний поможет Вам в вопросах администрирования Вашего виртуального сервера VPS/VDS. База знаний содержит материалы по развертыванию широкого спектра серверных решений, от веб-серверов с базами данных до более сложных конфигураций.">
+	<link rel="stylesheet" href="./Nginx + Apache_files/pstyle.css" type="text/css" media="screen">
+
+	<link rel="shortcut icon" href="http://lib.clodo.ru/favicon.ico">
+	<link rel="image_src" href="http://lib.clodo.ru/favicon.ico">
+
+	<!--[if IE]>
+
+		<script src="https://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+
+		<script type="text/javascript" src="/js/excanvas.js"></script>
+		<style type="text/css">
+		table.header td {
+			padding:0;
+		}
+		.contentcolumn div.serverlist {
+			width: 40%;
+			margin: 15px 3% 25px 3%;
+		}
+		table.header td.menu table.main_menu div {
+			margin-left: 2px;
+		}
+		</style>
+	<![endif]-->
+
+	<!-- GOOGLE SEARCH -->
+	<script async="" src="./Nginx + Apache_files/analytics.js"></script><script async="" src="./Nginx + Apache_files/module.js"></script><script type="text/javascript" async="" src="./Nginx + Apache_files/cse.js"></script><script>
+	  (function() {
+	    var cx = '005661710072474951780:6ywyu3asnyk';
+	    var gcse = document.createElement('script'); gcse.type = 'text/javascript'; gcse.async = true;
+	    gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//www.google.com/cse/cse.js?cx=' + cx;
+	    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(gcse, s);
+	  })();
+	</script><style type="text/css"></style>
+	<script type="text/javascript">
+		(function(w, d, s, h, id) {
+			w.roistatCookieDomain = 'clodo.ru';
+		    w.roistatProjectId = id; w.roistatHost = h;
+		    var p = d.location.protocol == "https:" ? "https://" : "http://";
+		    var u = /^.*roistat_visit=[^;]+(.*)?$/.test(d.cookie) ? "/dist/module.js" : "/api/site/1.0/"+id+"/init";
+		    var js = d.createElement(s); js.async = 1; js.src = p+h+u; var js2 = d.getElementsByTagName(s)[0]; js2.parentNode.insertBefore(js, js2);
+		})(window, document, 'script', 'cloud.roistat.com', '6750');
+	</script>
+<script src="./Nginx + Apache_files/jsapi" type="text/javascript"></script><link type="text/css" href="./Nginx + Apache_files/default+ru.css" rel="stylesheet"><link type="text/css" href="./Nginx + Apache_files/default.css" rel="stylesheet"><script type="text/javascript" src="./Nginx + Apache_files/default+ru.I.js"></script><link rel="stylesheet" href="./Nginx + Apache_files/module.css"><style type="text/css">
+.gsc-control-cse {
+font-family: Arial, sans-serif;
+border-color: #FFFFFF;
+background-color: #FFFFFF;
+}
+.gsc-control-cse .gsc-table-result {
+font-family: Arial, sans-serif;
+}
+input.gsc-input, .gsc-input-box, .gsc-input-box-hover, .gsc-input-box-focus {
+border-color: #D9D9D9;
+}
+input.gsc-search-button, input.gsc-search-button:hover, input.gsc-search-button:focus {
+border-color: #2F5BB7;
+background-color: #357AE8;
+background-image: none;
+filter: none;
+}
+.gsc-tabHeader.gsc-tabhInactive {
+border-color: #CCCCCC;
+background-color: #FFFFFF;
+}
+.gsc-tabHeader.gsc-tabhActive {
+border-color: #CCCCCC;
+border-bottom-color: #FFFFFF;
+background-color: #FFFFFF;
+}
+.gsc-tabsArea {
+border-color: #CCCCCC;
+}
+.gsc-webResult.gsc-result,
+.gsc-results .gsc-imageResult {
+border-color: #FFFFFF;
+background-color: #FFFFFF;
+}
+.gsc-webResult.gsc-result:hover,
+.gsc-imageResult:hover {
+border-color: #FFFFFF;
+background-color: #FFFFFF;
+}
+.gs-webResult.gs-result a.gs-title:link,
+.gs-webResult.gs-result a.gs-title:link b,
+.gs-imageResult a.gs-title:link,
+.gs-imageResult a.gs-title:link b {
+color: #006699;
+}
+.gs-webResult.gs-result a.gs-title:visited,
+.gs-webResult.gs-result a.gs-title:visited b,
+.gs-imageResult a.gs-title:visited,
+.gs-imageResult a.gs-title:visited b {
+color: #006699;
+}
+.gs-webResult.gs-result a.gs-title:hover,
+.gs-webResult.gs-result a.gs-title:hover b,
+.gs-imageResult a.gs-title:hover,
+.gs-imageResult a.gs-title:hover b {
+color: #CC0000;
+}
+.gs-webResult.gs-result a.gs-title:active,
+.gs-webResult.gs-result a.gs-title:active b,
+.gs-imageResult a.gs-title:active,
+.gs-imageResult a.gs-title:active b {
+color: #1155CC;
+}
+.gsc-cursor-page {
+color: #006699;
+}
+a.gsc-trailing-more-results:link {
+color: #006699;
+}
+.gs-webResult .gs-snippet,
+.gs-imageResult .gs-snippet,
+.gs-fileFormatType {
+color: #000000;
+}
+.gs-webResult div.gs-visibleUrl,
+.gs-imageResult div.gs-visibleUrl {
+color: #FF8C00;
+}
+.gs-webResult div.gs-visibleUrl-short {
+color: #FF8C00;
+}
+.gs-webResult div.gs-visibleUrl-short {
+display: none;
+}
+.gs-webResult div.gs-visibleUrl-long {
+display: block;
+}
+.gs-promotion div.gs-visibleUrl-short {
+display: none;
+}
+.gs-promotion div.gs-visibleUrl-long {
+display: block;
+}
+.gsc-cursor-box {
+border-color: #FFFFFF;
+}
+.gsc-results .gsc-cursor-box .gsc-cursor-page {
+border-color: #CCCCCC;
+background-color: #FFFFFF;
+color: #006699;
+}
+.gsc-results .gsc-cursor-box .gsc-cursor-current-page {
+border-color: #CCCCCC;
+background-color: #FFFFFF;
+color: #006699;
+}
+.gsc-webResult.gsc-result.gsc-promotion {
+border-color: #F6F6F6;
+background-color: #F6F6F6;
+}
+.gsc-completion-title {
+color: #006699;
+}
+.gsc-completion-snippet {
+color: #000000;
+}
+.gs-promotion a.gs-title:link,
+.gs-promotion a.gs-title:link *,
+.gs-promotion .gs-snippet a:link {
+color: #006699;
+}
+.gs-promotion a.gs-title:visited,
+.gs-promotion a.gs-title:visited *,
+.gs-promotion .gs-snippet a:visited {
+color: #006699;
+}
+.gs-promotion a.gs-title:hover,
+.gs-promotion a.gs-title:hover *,
+.gs-promotion .gs-snippet a:hover {
+color: #1155CC;
+}
+.gs-promotion a.gs-title:active,
+.gs-promotion a.gs-title:active *,
+.gs-promotion .gs-snippet a:active {
+color: #1155CC;
+}
+.gs-promotion .gs-snippet,
+.gs-promotion .gs-title .gs-promotion-title-right,
+.gs-promotion .gs-title .gs-promotion-title-right * {
+color: #333333;
+}
+.gs-promotion .gs-visibleUrl,
+.gs-promotion .gs-visibleUrl-short {
+color: #006699;
+}</style><style type="text/css">.gscb_a{display:inline-block;font:27px/13px arial,sans-serif}.gsst_a .gscb_a{color:#a1b9ed;cursor:pointer}.gsst_a:hover .gscb_a,.gsst_a:focus .gscb_a{color:#36c}.gsst_a{display:inline-block}.gsst_a{cursor:pointer;padding:0 4px}.gsst_a:hover{text-decoration:none!important}.gsst_b{font-size:16px;padding:0 2px;position:relative;user-select:none;-webkit-user-select:none;white-space:nowrap}.gsst_e{opacity:0.55;}.gsst_a:hover .gsst_e,.gsst_a:focus .gsst_e{opacity:0.72;}.gsst_a:active .gsst_e{opacity:1;}.gsst_f{background:white;text-align:left}.gsst_g{background-color:white;border:1px solid #ccc;border-top-color:#d9d9d9;box-shadow:0 2px 4px rgba(0,0,0,0.2);-webkit-box-shadow:0 2px 4px rgba(0,0,0,0.2);margin:-1px -3px;padding:0 6px}.gsst_h{background-color:white;height:1px;margin-bottom:-1px;position:relative;top:-1px}.gsib_a{width:100%;padding:4px 6px 0}.gsib_a,.gsib_b{vertical-align:top}.gssb_c{border:0;position:absolute;z-index:989}.gssb_e{border:1px solid #ccc;border-top-color:#d9d9d9;box-shadow:0 2px 4px rgba(0,0,0,0.2);-webkit-box-shadow:0 2px 4px rgba(0,0,0,0.2);cursor:default}.gssb_f{visibility:hidden;white-space:nowrap}.gssb_k{border:0;display:block;position:absolute;top:0;z-index:988}.gsdd_a{border:none!important}.gsq_a{padding:0}.gscsep_a{display:none}.gssb_a{padding:0 7px}.gssb_a,.gssb_a td{white-space:nowrap;overflow:hidden;line-height:22px}#gssb_b{font-size:11px;color:#36c;text-decoration:none}#gssb_b:hover{font-size:11px;color:#36c;text-decoration:underline}.gssb_g{text-align:center;padding:8px 0 7px;position:relative}.gssb_h{font-size:15px;height:28px;margin:0.2em;-webkit-appearance:button}.gssb_i{background:#eee}.gss_ifl{visibility:hidden;padding-left:5px}.gssb_i .gss_ifl{visibility:visible}a.gssb_j{font-size:13px;color:#36c;text-decoration:none;line-height:100%}a.gssb_j:hover{text-decoration:underline}.gssb_l{height:1px;background-color:#e5e5e5}.gssb_m{color:#000;background:#fff}.gsfe_a{border:1px solid #b9b9b9;border-top-color:#a0a0a0;box-shadow:inset 0px 1px 2px rgba(0,0,0,0.1);-moz-box-shadow:inset 0px 1px 2px rgba(0,0,0,0.1);-webkit-box-shadow:inset 0px 1px 2px rgba(0,0,0,0.1);}.gsfe_b{border:1px solid #4d90fe;outline:none;box-shadow:inset 0px 1px 2px rgba(0,0,0,0.3);-moz-box-shadow:inset 0px 1px 2px rgba(0,0,0,0.3);-webkit-box-shadow:inset 0px 1px 2px rgba(0,0,0,0.3);}.gssb_a{padding:0 9px}.gsib_a{padding-right:8px;padding-left:8px}.gsst_a{padding-top:3px}.gssb_e{border:0}.gssb_l{margin:5px 0}.gssb_c .gsc-completion-container{position:static}.gssb_c{z-index:5000}.gsc-completion-container table{background:transparent;font-size:inherit;font-family:inherit}.gssb_c > tbody > tr,.gssb_c > tbody > tr > td,.gssb_d,.gssb_d > tbody > tr,.gssb_d > tbody > tr > td,.gssb_e,.gssb_e > tbody > tr,.gssb_e > tbody > tr > td{padding:0;margin:0;border:0}.gssb_a table,.gssb_a table tr,.gssb_a table tr td{padding:0;margin:0;border:0}</style></head>
+
+<body>
+
+<!-- test -->
+	<table cellpadding="0" cellspacing="0" border="0" width="100%">
+	<tbody><tr><td height="115">
+		<div class="botsi"></div>
+		<div class="header"></div>
+		<table cellpadding="0" cellspacing="0" width="100%" border="0" class="header">
+			<tbody><tr>
+				<td rowspan="2" class="logo"><a href="http://lib.clodo.ru/"><img src="./Nginx + Apache_files/logo.png" border="0" width="195" height="50" alt="Панель управления хостингом CLODO.RU"></a></td>
+				<td rowspan="2" class="slog">
+					<p><nobr>База знаний Clodo.ru</nobr><br> <font class="mslink"><a href="http://www.clodo.ru/">Перейти на сайт clodo.ru</a></font></p>
+				</td>
+				<td class="user" align="right">
+
+				<!-- GOOGLE SEARCH BOX -->
+				<div class="searchbox">
+					<div id="___gcse_0"><div class="gsc-control-searchbox-only gsc-control-searchbox-only-ru" dir="ltr"><form class="gsc-search-box gsc-search-box-tools" accept-charset="utf-8"><table cellspacing="0" cellpadding="0" class="gsc-search-box"><tbody><tr><td class="gsc-input"><div class="gsc-input-box " id="gsc-iw-id1"><table cellspacing="0" cellpadding="0" id="gs_id50" class="gstl_50 " style="width: 100%; padding: 0px;"><tbody><tr><td id="gs_tti50" class="gsib_a"><input autocomplete="off" type="text" size="10" class="gsc-input" name="search" title="поиск" id="gsc-i-id1" dir="ltr" spellcheck="false" style="width: 100%; padding: 0px; border: none; margin: 0px; height: auto; outline: none; background: url(http://www.google.com/cse/static/ru/google_custom_search_watermark.gif) 0% 50% no-repeat rgb(255, 255, 255);"></td><td class="gsib_b"><div class="gsst_b" id="gs_st50" dir="ltr"><a class="gsst_a" href="javascript:void(0)" style="display: none;"><span class="gscb_a" id="gs_cb50">×</span></a></div></td></tr></tbody></table></div><input type="hidden" name="bgresponse" id="bgresponse"></td><td class="gsc-search-button"><input type="image" src="./Nginx + Apache_files/search_box_icon.png" class="gsc-search-button gsc-search-button-v2" title="поиск"></td><td class="gsc-clear-button"><div class="gsc-clear-button" title="удалить результаты">&nbsp;</div></td></tr></tbody></table><table cellspacing="0" cellpadding="0" class="gsc-branding"><tbody><tr><td class="gsc-branding-user-defined"></td><td class="gsc-branding-text"><div class="gsc-branding-text">технология</div></td><td class="gsc-branding-img"><img src="./Nginx + Apache_files/small-logo.png" class="gsc-branding-img"></td></tr></tbody></table></form></div></div>
+				</div>
+				<!-- /GOOGLE SEARCH BOX -->
+
+				</td>
+			</tr>
+			<tr>
+				<td class="menu" align="right" valign="bottom">
+
+
+
+					<table cellpadding="0" cellspacing="0" border="0" class="main_menu">
+						<tbody><tr>
+							<td><div><a href="http://panel.clodo.ru/">Панель управления</a></div></td>
+							<td class="menusep">&nbsp;</td>
+							<!-- <td><div><a href="http://forum.clodo.ru">Форум&nbsp;поддержки</a></div></td> -->
+							<td class="menusep">&nbsp;</td>
+							<td><div class="current"><a href="http://lib.clodo.ru/">База знаний</a></div></td>
+
+						</tr>
+					</tbody></table>
+
+				</td>
+			</tr>
+		</tbody></table>
+	</td></tr>
+	<tr><td valign="top">
+		<div class="maincontainer">
+		<table cellpadding="0" cellspacing="0" width="100%" style="padding: 0 30px;">
+			<tbody><tr>
+				<td valign="top" width="20%">
+				<div class="balanceblock">
+				<div class="cashflow">
+
+
+					<!-- LEFT MENU -->
+					<div class="categoryhead"><b>Разделы базы знаний</b></div>
+
+						
+							
+
+
+							
+								<div class="category1item"><a href="http://lib.clodo.ru/%D0%A5%D0%BE%D1%81%D1%82%D0%B8%D0%BD%D0%B3%20clodo.ru/">Хостинг clodo.ru</a></div>
+							
+						
+							
+
+
+							
+								<div class="category1item"><a href="http://lib.clodo.ru/cloud-storage/">Облачное хранилище</a></div>
+							
+						
+							
+
+
+							
+								<div class="category1item"><a href="http://lib.clodo.ru/%D0%9F%D0%B0%D0%BD%D0%B5%D0%BB%D0%B8%20%D1%83%D0%BF%D1%80%D0%B0%D0%B2%D0%BB%D0%B5%D0%BD%D0%B8%D1%8F%20vps/">Панели управления vps</a></div>
+							
+						
+							
+
+
+							
+								<div class="category1item"><a href="http://lib.clodo.ru/getting-started/">Первые шаги</a></div>
+							
+						
+							
+
+
+							
+								<div class="category1item"><a href="http://lib.clodo.ru/%D0%98%D1%81%D0%BF%D0%BE%D0%BB%D1%8C%D0%B7%D1%83%D0%B5%D0%BC%20linux/">Используем linux</a></div>
+							
+						
+							
+
+
+							
+								<div class="category1item"><a href="http://lib.clodo.ru/cms/">cms</a></div>
+							
+						
+							
+
+
+							
+								<div class="category1item"><a href="http://lib.clodo.ru/web-%D0%A1%D0%B5%D1%80%D0%B2%D0%B5%D1%80/">web-Сервер</a></div>
+							
+						
+							
+
+
+							
+								<div class="category1item"><a href="http://lib.clodo.ru/email/">email</a></div>
+							
+						
+							
+
+
+							
+								<div class="category1item"><a href="http://lib.clodo.ru/linux-security/">Безопасность</a></div>
+							
+						
+							
+
+
+							
+								<div class="category1item"><a href="http://lib.clodo.ru/network/">Сеть</a></div>
+							
+						
+
+					</div>
+					<!-- !LEFT MENU -->
+
+				</div>
+				</td>
+				<td valign="top" width="80%" class="maintd">
+			<div class="contentwrapper">
+				<div class="contentcolumn" style="margin-left: 0;">
+					<div class="innertube">
+
+	<!-- TOP NAVIBAR _ START-->
+<div class="crosh">
+	<a href="http://lib.clodo.ru/">База знаний</a> ::
+	<a href="http://lib.clodo.ru/web-%D0%A1%D0%B5%D1%80%D0%B2%D0%B5%D1%80/">web-Сервер</a> :: 
+	Nginx + Apache
+</div>
+<!-- TOP NAVIBAR _ END-->
+
+<h1>Установка и настройка связки Nginx+Apache</h1>
+
+<!-- ARTICLE _ START -->
+<p>Связка двух веб-серверов, один из которых выполняет функцию фронтенда (Nginx), другой - бэкенда (Apache2), предназначена для снижения общей нагрузки на сервер. Достигается это за счет того, что более легкий и не обремененный дополнительным функционалом Nginx первым принимает все запросы пользователей. Он самостоятельно выдает по запросам статический контент (изображения, html-файлы, javascript-скрипты..), не озадачивая этой функцией тяжеловесный Apache, который, в свою очередь, обрабатывает динамический контент. Apache не работает напрямую с пользователем, все их запросы проксируются Nginx, и ему же возвращаются ответы. Так достигается разделение труда: Nginx освобождает Apache от необходимости “общаться” с множеством пользователей и обрабатывать запросы на статику, которая составляет большую часть исходящего трафика. Apache не создает множества дочерних процессов, потребляющих оперативную память.</p>
+
+<p>Данная связка часто применяется для обеспечения работы крупных ресурсов с большой посещаемостью. Для ресурсов с маленькой посещаемостью такая связка не даст ощутимого прироста производительности.</p>
+
+<ul id="markdown-toc">
+  <li><a href="http://lib.clodo.ru/web-%D0%A1%D0%B5%D1%80%D0%B2%D0%B5%D1%80/webserver-lna.html#nginx">Установка nginx</a>    <ul>
+      <li><a href="http://lib.clodo.ru/web-%D0%A1%D0%B5%D1%80%D0%B2%D0%B5%D1%80/webserver-lna.html#centos">CentOS</a></li>
+      <li><a href="http://lib.clodo.ru/web-%D0%A1%D0%B5%D1%80%D0%B2%D0%B5%D1%80/webserver-lna.html#debianubuntu">Debian/Ubuntu</a></li>
+    </ul>
+  </li>
+  <li><a href="http://lib.clodo.ru/web-%D0%A1%D0%B5%D1%80%D0%B2%D0%B5%D1%80/webserver-lna.html#nginx-1">Конфигурация Nginx</a></li>
+  <li><a href="http://lib.clodo.ru/web-%D0%A1%D0%B5%D1%80%D0%B2%D0%B5%D1%80/webserver-lna.html#apache2">Установка Apache2</a>    <ul>
+      <li><a href="http://lib.clodo.ru/web-%D0%A1%D0%B5%D1%80%D0%B2%D0%B5%D1%80/webserver-lna.html#centos-1">CentOS</a></li>
+      <li><a href="http://lib.clodo.ru/web-%D0%A1%D0%B5%D1%80%D0%B2%D0%B5%D1%80/webserver-lna.html#debianubuntu-1">Debian/Ubuntu</a></li>
+    </ul>
+  </li>
+  <li><a href="http://lib.clodo.ru/web-%D0%A1%D0%B5%D1%80%D0%B2%D0%B5%D1%80/webserver-lna.html#apache">Конфигурация Apache</a></li>
+  <li><a href="http://lib.clodo.ru/web-%D0%A1%D0%B5%D1%80%D0%B2%D0%B5%D1%80/webserver-lna.html#rpaf">Установка модуля RPAF</a>    <ul>
+      <li><a href="http://lib.clodo.ru/web-%D0%A1%D0%B5%D1%80%D0%B2%D0%B5%D1%80/webserver-lna.html#centos-2">CentOS</a></li>
+      <li><a href="http://lib.clodo.ru/web-%D0%A1%D0%B5%D1%80%D0%B2%D0%B5%D1%80/webserver-lna.html#debianubuntu-2">Debian/Ubuntu</a></li>
+    </ul>
+  </li>
+  <li><a href="http://lib.clodo.ru/web-%D0%A1%D0%B5%D1%80%D0%B2%D0%B5%D1%80/webserver-lna.html#rpaf-1">Настройка модуля RPAF</a></li>
+  <li><a href="http://lib.clodo.ru/web-%D0%A1%D0%B5%D1%80%D0%B2%D0%B5%D1%80/webserver-lna.html#section">Завершение настройки (перезапуск сервисов)</a></li>
+</ul>
+
+<p>Если Вы являетесь пользователем ISPmanager, нижеизложенная информация пригодится Вам лишь для ознакомления. Его функционал позволяет создать такую связку достаточно быстро и без манипуляции с командной строкой.</p>
+
+<p>Данная статья была протестирована на CentOS 5 и Debian Squeeze. Связка работает в том же виде и на других дистрибутивах, но по причине наибольшей популярности первых, мы будем говорить именно о них. Основная часть данной статьи посвящена CentOS, но различия с Debian заключаются только в названиях пакетных менеджеров и нескольких незначительных моментах. Все особенности установки для Debian описаны в заключительной части данной статьи. Команды и примеры файлов конфигурации, не указанные в этом разделе, подходят для обеих систем.</p>
+
+<h2 id="nginx">Установка nginx</h2>
+
+<h3 id="centos">CentOS</h3>
+
+<p>Для начала нам необходимо подключить репозитории EPEL и CentALT. Это нужно для того, чтобы мы смогли установить Nginx с поддержкой модуля RPAF и сам модуль для Apache.</p>
+
+<p>Для подключения этих репозиториев введите в консоли команды:</p>
+
+<pre><code># для 32-битных ОС  
+rpm -ihv http://dl.fedoraproject.org/pub/epel/5/i386/epel-release-5-4.noarch.rpm  
+rpm -ihv http://centos.alt.ru/repository/centos/5/i386/centalt-release-5-3.noarch.rpm  
+
+# для 64-битных ОС  
+rpm -ihv http://dl.fedoraproject.org/pub/epel/5/x86_64/epel-release-5-4.noarch.rpm  
+rpm -ihv http://centos.alt.ru/repository/centos/5/x86_64/centalt-release-5-3.noarch.rpm
+</code></pre>
+
+<p>Далее, выполните команду установки пакета nginx:</p>
+
+<pre><code>yum install nginx
+</code></pre>
+
+<p>В большинстве случаев требуется, чтобы nginx загружался автоматически при запуске сервера. Для этого выполните следующую команду:</p>
+
+<pre><code>chkconfig nginx on
+</code></pre>
+
+<h3 id="debianubuntu">Debian/Ubuntu</h3>
+
+<p>Для установки пакета в ОС Debian или Ubuntu достаточно выполнить команду в консоли:</p>
+
+<pre><code>apt-get install nginx
+</code></pre>
+
+<p>Nginx автоматически будет добавлен в автозагрузку при запуске сервера.</p>
+
+<h2 id="nginx-1">Конфигурация Nginx</h2>
+
+<p>Следующий этап - изменение файла конфигурации Nginx. Путь к файлу конфигурации: <code>/etc/nginx/nginx.conf</code></p>
+
+<p>Наш конфиг файл должен выглядеть примерно так:</p>
+
+<pre><code>user www-data;
+error_log /var/log/nginx/error.log debug; 
+pid /var/run/nginx.pid;
+worker_rlimit_nofile 80000;
+
+events {
+  worker_connections 2048;
+}
+
+http {
+  include /etc/nginx/mime.types;
+  default_type application/octet-stream;
+  log_format main ‘$remote_addr – $remote_user [$time_local] $status ‘
+  ‘»$request» $body_bytes_sent «$http_referer» ‘
+  ‘»$http_user_agent» «http_x_forwarded_for»‘;
+  access_log /var/log/nginx/access.log main;
+
+  server {
+    listen    88.88.88.11:80; # 88.88.88.11 нужно заменить на IP Вашего сервера
+    # здесь и далее вместо mysite.ru указывается имя Вашего сайта
+    server_name mysite.ru www.mysite.ru; 
+    access_log  /var/log/nginx/host.access.log main;
+
+    server_name_in_redirect off;
+
+    # Секция ниже описывает параметры, по которых фронтенд обменевается с бэкендом,
+    # такие, как адрес бэкенда, параметры прямого редиректа, параметры передачи заголовков,
+    # максимальный размер принимаемых файлов и пр.
+    location / {
+      proxy_pass      http://127.0.0.1:8080/;
+      proxy_redirect    off;
+      proxy_set_header  Host $host;
+      proxy_set_header  X-Real-IP $remote_addr;
+      proxy_set_header  X-Forwarded-For $proxy_add_x_forwarded_for;
+      client_max_body_size 10m;
+      proxy_connect_timeout 90;
+    }
+
+    # Эта секция отвечает за местонахождение и типы статичных файлов, обрабатываемых Nginx.
+    # Вы можете добавить по аналогии расширения файлов, которые будут отдаваться Nginx'ом.
+    # Динамические файлы мы будем отсылать на Apache
+    location ~* ^.+\.(jpg|jpeg|gif|png|ico|css|zip|tgz|gz|js)$ {
+      root /var/www/mysite.ru;
+    }
+  }
+}
+</code></pre>
+
+<h2 id="apache2">Установка Apache2</h2>
+
+<h3 id="centos-1">CentOS</h3>
+
+<p>В списке пакетов для CentOS Apache2 значится как httpd, потому необходимо выполнить следующую команду в консоли:</p>
+
+<pre><code>yum install httpd
+</code></pre>
+
+<h3 id="debianubuntu-1">Debian/Ubuntu</h3>
+
+<p>Для Debian/Ubuntu установить Apache нужно командой:</p>
+
+<pre><code>apt-get install apache2
+</code></pre>
+
+<h2 id="apache">Конфигурация Apache</h2>
+
+<p>Приводим соответствующую часть файла конфигурации Apache к такому виду:</p>
+
+<p>Файл конфигурации располагается:<br>
+<strong>Debian/Ubuntu:</strong> /etc/apache2/apache2.conf<br>
+<strong>CentOS:</strong> /etc/httpd/conf/httpd.conf</p>
+
+<blockquote>
+  <p>Listen 127.0.0.1:8080<br>
+NameVirtualHost 127.0.0.1:8080  </p>
+
+  <p>&lt;VirtualHost 127.0.0.1:8080&gt;<br>
+ # В строке ниже указывается адрес почтового ящика администратора сервера,<br>
+ # т. е. Ваш. Имя-пример “mysite.ru” здесь и далее необходимо заменить на имя Вашего сайта<br>
+ ServerAdmin webmaster@mysite.ru<br>
+ DocumentRoot /var/www/mysite.ru/<br>
+ ServerName mysite.ru<br>
+ ErrorLog logs/mysite.ru-error_log<br>
+ CustomLog logs/mysite.ru-access_log common<br>
+&lt;/VirtualHost&gt;</p>
+</blockquote>
+
+<h2 id="rpaf">Установка модуля RPAF</h2>
+
+<p>Т.к. теперь все запросы к Apache приходят не от удалённых клиентов, а от Nginx, то в итоге IP-адрес клиента Apache определяет как локальный (127.0.0.1). Для решения этой проблемы нам нужен модуль RPAF. Он берет тело заголовка X-Forwarded-For, присланного от фронтенда (Nginx) и заменяет значение заголовка REMOTE_ADDR на бекенде (Apache).</p>
+
+<h3 id="centos-2">CentOS</h3>
+
+<p>Установка в CentOS выполняется следующей командой:</p>
+
+<pre><code>yum install mod_rpaf
+</code></pre>
+
+<h3 id="debianubuntu-2">Debian/Ubuntu</h3>
+
+<p>В Debian или Ubuntu установка и включение модуля RPAF в Apache выполняется следующими командами:</p>
+
+<pre><code>apt-get install libapache2-mod-rpaf
+a2enmod rpaf
+</code></pre>
+
+<h2 id="rpaf-1">Настройка модуля RPAF</h2>
+
+<p>Файл конфигурации RPAF находится:<br>
+<strong>Debian/Ubuntu:</strong> /etc/apache2/mods-enabled/rpaf.conf<br>
+<strong>CentOS:</strong> /etc/httpd/conf.d/rpaf.conf</p>
+
+<p>Он должен содержать следующие строки:</p>
+
+<blockquote>
+  <p>RPAFenable On<br>
+RPAFsethostname Off<br>
+RPAFproxy_ips 127.0.0.1<br>
+RPAFheader X-Real-IP  </p>
+</blockquote>
+
+<p>Если у вас установлена ОС CentOS, то в начало этого файла обязательно добавьте строку:</p>
+
+<blockquote>
+  <p>LoadModule rpaf_module modules/mod_rpaf-2.0.so</p>
+</blockquote>
+
+<h2 id="section">Завершение настройки (перезапуск сервисов)</h2>
+
+<p>На этом настройка связки закончена. Теперь нужно только перезапусть Apache и Nginx. Команды перезапуска сервисов различаются для ОС (из-за различий в названиях пакетов).</p>
+
+<p>Для CentOS выполните команды:</p>
+
+<pre><code>/etc/init.d/httpd restart
+/etc/init.d/nginx restart
+</code></pre>
+
+<p>Для Debian и Ubuntu команды будут следующие:</p>
+
+<pre><code>/etc/init.d/apache2 restart
+/etc/init.d/nginx restart
+</code></pre>
+
+<p>Теперь связка работает, Nginx обрабатывает статичные данные, Apache - динамические.</p>
+
+<p class="tip">Обращаем Ваше внимание, что данный пример настройки действителен только для одного хоста.<br>
+В случае наличия более чем одного сайта, содержимое файлов конфигурации будет отличаться.</p>
+
+<!-- ARTICLE _ END -->
+
+<h6 class="usl">Условия использования документа</h6>
+<p>Материал представленный на данной странице может быть использован Вами по своему усмотрению. Разрешается копирование и распространение предоставленного материала без изменения содержания и без предварительного уведомления администрации <a class="out" target="_blank" href="http://www.clodo.ru/">Clodo.ru</a>.</p>
+<p>Мы будем признательны Вам за сообщения об ошибках в представленной документации и за предложения об улучшении документации. По этим вопросам необходимо обращаться по адресу <a href="mailto:mail@clodo.ru">mail@clodo.ru</a>. При обращении не забывайте указывать URL-адрес публикации.</p>
+
+					</div>
+				</div>
+			</div>
+
+				</td>
+			</tr>
+		</tbody></table>
+		</div>
+
+			<div class="footer">
+				Техническая поддержка: СПб: +7 (812) 380-24-97 | Москва: +7 (499) 504-98-28
+			</div>
+
+	</td></tr>
+	</tbody></table>
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-20407698-1', 'auto', {'allowLinker': true});
+  ga('require', 'linker');
+  ga('linker:autoLink', ['www.clodo.ru', 'panel.clodo.ru', 'status.clodo.ru', 'partners.clodo.ru']);
+  ga('send', 'pageview');
+
+</script>
+
+
+
+<iframe class="transover-tooltip" style="text-align: left; border: 1px solid rgb(204, 204, 204); box-shadow: rgba(0, 0, 0, 0.2) 0px 2px 5px; position: fixed; border-radius: 5px; z-index: 2147483647; top: -1500px; display: none; background: rgb(252, 247, 217);"></iframe><iframe class="transover-tooltip" style="text-align: left; border: 1px solid rgb(204, 204, 204); box-shadow: rgba(0, 0, 0, 0.2) 0px 2px 5px; position: fixed; border-radius: 5px; z-index: 2147483647; top: -1500px; display: none; background: rgb(252, 247, 217);"></iframe><div>    <style>        .roistat-promo-wrap { cursor: default; position: fixed !important; z-index: 2147483646; font-weight: bold; padding: 5px 10px 6px 10px; opacity: 0.6; color: #ffffff; background: #ffffff; text-align: center; display:none }        .roistat-promo-wrap:hover { opacity: 1; }    </style>    <div class="roistat-promo-wrap" style="left: 807.5px; bottom: 0px;">        <div class="roistat-promo-text">Промокод</div>        <div class="roistat-promo">52362</div>    </div></div><table cellspacing="0" cellpadding="0" class="gstl_50 gssb_c" style="width: 396px; display: none; top: 62px; position: absolute; left: 1091px;"><tbody><tr><td class="gssb_f"></td><td class="gssb_e" style="width: 100%;"></td></tr></tbody></table></body></html>

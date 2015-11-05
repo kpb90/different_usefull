@@ -26,7 +26,8 @@ stopsignal=KILL
 
 После этого достаточно перезапустить supervisor и worker.php сразу запустится:
 
-/etc/init.d/supervisor stop
-/etc/init.d/supervisor start
+sudo /etc/init.d/supervisor stop
+sudo /etc/init.d/supervisor start
+sudo /etc/init.d/supervisor restart
 
 sudo supervisorctl

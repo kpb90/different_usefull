@@ -7,3 +7,9 @@ ssh -p 22 pk@109.120.149.76
 публичный
 Cedis:
 ssh -p 22 pk@109.120.155.26
+
+sudo scp -r /home/pk/www/test_rabbit/ edrid@192.168.10.103:"/var/www/html"
+
+sudo scp -r /home/pk/www/test_rabbit/db_051115.sql edrid@192.168.10.103:"/var/www/html/db_051115.sql"
+
+sudo scp -r /var/www/html/db_051115.sql edrid@10.77.0.100:"/home/edrid/db_051115.sql"

@@ -3,3 +3,22 @@ sudo /etc/init.d/elasticsearch stop
 
 http://stackoverflow.com/questions/29495044/how-to-search-elasticsearch-case-insensitive/29495485#29495485
 
+/var/www/html/elasticsearch-jdbc-1.7.2.0/bin/all_rid.sh
+
+
+http://public:9200/all_rid/all_rid_type/_search
+
+{
+    "query" : {
+        "bool" : {
+            "must" : [
+                {
+                    "query_string":{
+                                    "query":"115.038.c09",
+                                    "fields" : ["abstract","title","number_rid"]
+                                    }
+                }
+            ]
+        }
+    }
+}

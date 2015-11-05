@@ -36,7 +36,7 @@ dpkg-reconfigure locales
 
 // Пароль для пользователя
 
-ALTER USER postgres with encrypted password 'root';
+ALTER USER postgres with encrypted password 'sdfklgjoierji';
 
 Добавление колонки
 ALTER TABLE branch ADD COLUMN path ltree
