@@ -97,3 +97,12 @@ LC_MEASUREMENT="ru_RU.UTF-8"
 LC_IDENTIFICATION="ru_RU.UTF-8"
 
 
+locale-gen en_US.UTF-8
+
+dpkg-reconfigure locales
+
+
+export table
+ sudo -u postgres pg_dump --table=cms2_pages --data-only --column-inserts rid_private_db > /home/pk/Desktop/cms2_pages.txt
+ sudo -u postgres pg_dump --table=cms2_pages --data-only --column-inserts rid_private_db > /var/www/html/cms2_pages.txt
+

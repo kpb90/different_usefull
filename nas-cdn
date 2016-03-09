@@ -1,0 +1,70 @@
+ssh
+
+во-первых, заливаем на первый винчестер файлик fun_plug (http://wolf-u.li/u/433) и fun_plug.tgz (http://inreto.de/dns323/fun-plug/0.7/arm/fun_plug.tgz)
+Перезагружаем NAS — теперь мы можем подключаться по telnet. Подключаемся по имени или адресу — без пароля!
+
+Подключаемся по telnet
+
+Устанавливаем root'овый пароль
+usermod -s /ffp/bin/sh root
+mkdir -p /ffp/home/root/
+sed -ie 's#:/home/root:#:/ffp/home/root:#g' /etc/passwd
+pwconv
+Если появятся ошибки '«usermod»: «usermod: no changes»' или '«pwconv»: «pwconv: failed to change the mode of /etc/passwd- to 0600»' — просто игнорируйте их.
+passwd
+Вводим новый пароль.
+login
+Вводим логин root и ваш пароль — получаем в ответ сообщение «no mail». Следующие действия необходимы для сохранения пароля:
+wget http://wolf-u.li/u/172/ -O /ffp/sbin/store-passwd.sh
+store-passwd.sh
+Активируем SSH
+chmod a+x /ffp/start/sshd.sh
+sh /ffp/start/sshd.sh start
+А теперь — подключаемся в другом окне по SSH, отвечаем утвердительно на вопрос о сохранении ключа, и если всё прошло гладко — отключаем автостарт telnet-сервиса в первом окне:
+chmod -x /ffp/start/telnetd.sh
+
+lighthttp.conf
+
+url.rewrite-once = ( "^/(.*)" => "/index.php" )
+index-file.names = {"index.php", "web/index.php", "web/login.html"}
+
+
+Путь до сайта
+/www/html/
+
+Путь до файлов
+/mnt/HD/HD_a2/mnt/
+
+lighttpd
+https://www.internetearnings.com/how-to-install-lighttpd-php-on-dlink-dns-320/
+
+restart
+sh /ffp/start/lighttpd.sh restart
+sh /ffp/start/lighttpd.sh stop
+sh /ffp/start/lighttpd.sh start
+
+ cp /mnt/HD/HD_a2/mnt/lighttpd3.conf /etc/lighttpd/lighttpd.conf 
+ cp /mnt/HD/HD_a2/mnt/lighttpd3.conf /ffp/etc/ 
+
+ /ffp/start/lighttpd.sh
+===========================
+#!/ffp/bin/sh
+
+# PROVIDE: lighttpd
+# REQUIRE: LOGIN
+
+. /ffp/etc/ffp.subr
+
+name="lighttpd"
+command="/ffp/sbin/lighttpd"
+lighttpd_flags="-f /etc/lighttpd/lighttpd.conf"
+required_files="/etc/lighttpd/lighttpd.conf"
+
+run_rc_command "$1"
+
+==============================================
+
+
+
+
+

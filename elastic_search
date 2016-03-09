@@ -1,6 +1,12 @@
 sudo /etc/init.d/elasticsearch start
 sudo /etc/init.d/elasticsearch stop
 
+Посмотреть маппинг
+http://localhost:9200/all_contract/_mapping?pretty
+
+где установлен
+http://localhost:9200/_nodes/settings?pretty=true
+
 http://stackoverflow.com/questions/29495044/how-to-search-elasticsearch-case-insensitive/29495485#29495485
 
 /var/www/html/elasticsearch-jdbc-1.7.2.0/bin/all_rid.sh
