@@ -152,9 +152,3 @@ sudo chmod 777 /var/www/html/test_rabbit -R
 sudo mkdir -m 777 /var/www/html/logs
 
 sudo chmod -R 777 /var/www/html/
-
-
-df -h - общая инфорация о свободном месте
-du -sh * - информация о размере папок
-
-

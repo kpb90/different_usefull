@@ -1,6 +1,6 @@
 После установки надо
 // Стартовать
-pg_createcluster 9.3 main --start
+pg_createcluster 9.5 main --start
 
 Рестарт
 /etc/init.d/postgresql restart
@@ -52,7 +52,7 @@ http://eax.me/postgresql-install/
 
 Проблемы с датой, то 
 datestyle = 'iso, dmy'
-nano  /etc/postgresql/9.3/main/postgresql.conf
+nano  /etc/postgresql/9.5/main/postgresql.conf
 
 
 sudo -u postgres psql rid_private_db < 'kc_20150918.sql'
@@ -71,8 +71,8 @@ import tar
 pg_restore -c -i -U postgres -d rid_public_db -v "db_210915.tar" -W
 
 export
-pg_dump -F c -f db_210915.tar.gz -U postgres rid_private_db
-
+pg_dump -F c -f db_210915.tar.gz -U postgres -h localhost rid_private_db
+pg_dump -U postgres -h localhost -s rid_private_db > qqq.sql
 
 CREATE DATABASE "rid_private_db" WITH OWNER "postgres" ENCODING 'UTF8' LC_COLLATE = 'ru_RU.UTF-8' LC_CTYPE = 'ru_RU.UTF-8';
 
@@ -106,3 +106,6 @@ export table
  sudo -u postgres pg_dump --table=cms2_pages --data-only --column-inserts rid_private_db > /home/pk/Desktop/cms2_pages.txt
  sudo -u postgres pg_dump --table=cms2_pages --data-only --column-inserts rid_private_db > /var/www/html/cms2_pages.txt
 
+pg_dump -F c -f db_190416.tar.gz -U postgres -h localhost rid_private_db
+
+pg_restore -h localhost -U postgres -F c -d rid_private_db2 "db_190416.tar.gz"
